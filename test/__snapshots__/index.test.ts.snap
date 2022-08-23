@@ -1,0 +1,35 @@
+// Vitest Snapshot v1
+
+exports[`fixtures > ./fixtures/basic.vue 1`] = `
+"<script setup lang=\\"ts\\">
+import { ref } from 'vue'
+const count = $ref(0)
+const count2 = $ref(1)
+const count3 = $ref(3)
+</script>
+
+<template>
+  <h1>{{ count }}</h1>
+</template>
+"
+`;
+
+exports[`fixtures > ./fixtures/setup.vue 1`] = `
+"<script>
+export default {
+  setup() {
+    const state = $ref(0)
+    const count = $ref('1')
+    return {
+      state,
+      count,
+    }
+  },
+}
+</script>
+
+<template>
+  {{ state }}
+</template>
+"
+`;
