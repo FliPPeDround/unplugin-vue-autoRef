@@ -5,7 +5,7 @@ import { parseSFC } from './../utils'
 import { DEFINE_REF_MACROS } from './constants'
 
 function transform(code: string, id: string) {
-  if (!code.includes('ref'))
+  if (!DEFINE_REF_MACROS.map(macros => code.includes(macros)).some(Boolean))
     return { code }
 
   const sfc = parseSFC(code, id)
