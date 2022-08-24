@@ -20,11 +20,6 @@ export default {
 "
 `;
 
-exports[`fixtures > ./fixtures/noMacros.vue 1`] = `
-"asdasd
-"
-`;
-
 exports[`fixtures > ./fixtures/setup/computed.vue 1`] = `
 "<script setup lang=\\"ts\\">
 import { computed, ref } from 'vue'
@@ -55,6 +50,17 @@ onMounted(() => {
 <template>
   <h1>{{ count }}</h1>
   <h1>{{ dobleCount }}</h1>
+</template>
+"
+`;
+
+exports[`fixtures > ./fixtures/setup/refAlias.vue 1`] = `
+"<script setup lang=\\"ts\\">
+const a = $ref('1')
+</script>
+
+<template>
+  <h1>{{ count }}</h1>
 </template>
 "
 `;

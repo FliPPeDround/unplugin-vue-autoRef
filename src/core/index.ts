@@ -4,7 +4,10 @@ import { MagicString } from '@vue/compiler-sfc'
 import { parseSFC } from './../utils'
 import { DEFINE_REF_MACROS } from './constants'
 
-function transform(code: string, id: string) {
+function transform(code: string, id: string, refAlias?: string) {
+  if (refAlias)
+    DEFINE_REF_MACROS.push(refAlias)
+
   if (!DEFINE_REF_MACROS.map(macros => code.includes(macros)).some(Boolean))
     return { code }
 
@@ -25,7 +28,11 @@ function transform(code: string, id: string) {
       const calleeName = path.get('callee').toString()
       if (DEFINE_REF_MACROS.includes(calleeName)) {
         const { callee } = path.node
-        s.overwrite(callee.start! + loc!.start.offset, callee.end! + loc!.start.offset, `\$${calleeName}`)
+        s.overwrite(
+          callee.start! + loc!.start.offset,
+          callee.end! + loc!.start.offset,
+          calleeName === refAlias ? '$ref' : `\$${calleeName}`,
+        )
       }
     },
   })
