@@ -1,29 +1,34 @@
-import type { CallExpression, Node, VariableDeclarator } from '@babel/types'
+import traverse from '@babel/traverse'
+import parser from '@babel/parser'
 import { MagicString } from '@vue/compiler-sfc'
 import { parseSFC } from './../utils'
-import type { SFCCompiled } from './../utils'
+import { DEFINE_REF_MACROS } from './constants'
 
 function transform(code: string, id: string) {
+  if (!code.includes('ref'))
+    return { code }
+
   const sfc = parseSFC(code, id)
-  const { isSetup } = sfc
-  const decls = filterMarcos(sfc)
-  let scriptCode = sfc.scriptSetup?.loc.source || sfc.script?.loc.source
+  if (!sfc.script && !sfc.scriptSetup)
+    return { code }
+
+  const loc = sfc.scriptSetup?.loc || sfc.script?.loc
 
   const s = new MagicString(code)
 
-  // 将ref替换成$ref
-  decls?.forEach((decl, index) => {
-    const { init } = decl
-    const { callee } = init as CallExpression
-    if (callee.type === 'Identifier' && callee.name === 'ref')
-      scriptCode = `${scriptCode!.slice(0, callee.start! + index)}$ref${scriptCode!.slice(callee.end! + index)}`
+  const ast = parser.parse(loc!.source, {
+    sourceType: 'unambiguous',
   })
 
-  // 拼接重新生成代码
-  if (isSetup)
-    s.overwrite(sfc.scriptSetup!.loc.start.offset!, sfc.scriptSetup!.loc.end.offset!, scriptCode!)
-  else
-    s.overwrite(sfc.script!.loc.start.offset!, sfc.script!.loc.end.offset!, scriptCode!)
+  traverse(ast, {
+    CallExpression(path) {
+      const calleeName = path.get('callee').toString()
+      if (DEFINE_REF_MACROS.includes(calleeName)) {
+        const { callee } = path.node
+        s.overwrite(callee.start! + loc!.start.offset, callee.end! + loc!.start.offset, `\$${calleeName}`)
+      }
+    },
+  })
 
   return {
     code: s.toString(),
@@ -31,43 +36,6 @@ function transform(code: string, id: string) {
       return s.generateMap({ hires: true })
     },
   }
-}
-
-// 过滤出所有的ref
-function filterMarcos(sfc: SFCCompiled) {
-  const { scriptCompiled, isSetup } = sfc
-  const scriptAst = scriptCompiled?.scriptSetupAst || scriptCompiled?.scriptAst
-  if (isSetup) {
-    return findRef(scriptAst as Node[])
-  }
-  else {
-    return scriptAst?.flatMap((node: Node): VariableDeclarator[] => {
-      if (node.type !== 'ExportDefaultDeclaration')
-        return []
-      if (node.declaration.type !== 'ObjectExpression')
-        return []
-      if (node.declaration.properties[0].type !== 'ObjectMethod')
-        return []
-      const setupNode = node.declaration.properties[0].body.body
-      return findRef(setupNode)
-    })
-  }
-}
-
-// 查找ref
-function findRef(nodes: Node[]): VariableDeclarator[] {
-  return nodes?.flatMap((node: Node): VariableDeclarator[] => {
-    if (node.type !== 'VariableDeclaration')
-      return []
-    const decls = node.declarations.filter((decl) => {
-      return (
-        decl.init?.type === 'CallExpression'
-      && decl.init.callee.type === 'Identifier'
-      && decl.init.callee.name === 'ref'
-      )
-    })
-    return decls
-  })
 }
 
 export {

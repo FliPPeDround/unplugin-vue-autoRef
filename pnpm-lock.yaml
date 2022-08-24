@@ -7,7 +7,10 @@ importers:
       '@antfu/eslint-config': ^0.26.1
       '@antfu/utils': ^0.5.2
       '@babel/generator': ^7.18.13
+      '@babel/parser': ^7.18.13
+      '@babel/traverse': ^7.18.13
       '@babel/types': ^7.18.10
+      '@types/babel__traverse': ^7.18.0
       '@types/node': ^18.7.5
       '@vitest/ui': ^0.22.1
       '@vue/compiler-sfc': ^3.2.37
@@ -29,7 +32,10 @@ importers:
       '@antfu/eslint-config': 0.26.1_4rv7y5c6xz3vfxwhbrcxxi73bq
       '@antfu/utils': 0.5.2
       '@babel/generator': 7.18.13
+      '@babel/parser': 7.18.13
+      '@babel/traverse': 7.18.13
       '@babel/types': 7.18.10
+      '@types/babel__traverse': 7.18.0
       '@types/node': 18.7.5
       '@vitest/ui': 0.22.1
       bumpp: 8.2.1
@@ -180,9 +186,9 @@ packages:
       '@babel/helper-compilation-targets': 7.18.9_@babel+core@7.18.10
       '@babel/helper-module-transforms': 7.18.9
       '@babel/helpers': 7.18.9
-      '@babel/parser': 7.18.11
+      '@babel/parser': 7.18.13
       '@babel/template': 7.18.10
-      '@babel/traverse': 7.18.11
+      '@babel/traverse': 7.18.13
       '@babel/types': 7.18.13
       convert-source-map: 1.8.0
       debug: 4.3.4
@@ -252,7 +258,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.18.6
       '@babel/helper-validator-identifier': 7.18.6
       '@babel/template': 7.18.10
-      '@babel/traverse': 7.18.11
+      '@babel/traverse': 7.18.13
       '@babel/types': 7.18.13
     transitivePeerDependencies:
       - supports-color
@@ -290,7 +296,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/template': 7.18.10
-      '@babel/traverse': 7.18.11
+      '@babel/traverse': 7.18.13
       '@babel/types': 7.18.13
     transitivePeerDependencies:
       - supports-color
@@ -305,12 +311,12 @@ packages:
       js-tokens: 4.0.0
     dev: true
 
-  /@babel/parser/7.18.11:
-    resolution: {integrity: sha512-9JKn5vN+hDt0Hdqn1PiJ2guflwP+B6Ga8qbDuoF0PzzVhrzsKIJo8yGqVk6CmMHiMei9w1C1Bp9IMJSIK+HPIQ==}
+  /@babel/parser/7.18.13:
+    resolution: {integrity: sha512-dgXcIfMuQ0kgzLB2b9tRZs7TTFFaGM2AbtA4fJgUUYukzGH4jwsS7hzQHEGs67jdehpm22vkgKwvbU+aEflgwg==}
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      '@babel/types': 7.18.10
+      '@babel/types': 7.18.13
 
   /@babel/standalone/7.18.12:
     resolution: {integrity: sha512-wDh3K5IUJiSMAY0MLYBFoCaj2RCZwvDz5BHn2uHat9KOsGWEVDFgFQFIOO+81Js2phFKNppLC45iOCsZVfJniw==}
@@ -322,12 +328,12 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/parser': 7.18.11
+      '@babel/parser': 7.18.13
       '@babel/types': 7.18.13
     dev: true
 
-  /@babel/traverse/7.18.11:
-    resolution: {integrity: sha512-TG9PiM2R/cWCAy6BPJKeHzNbu4lPzOSZpeMfeNErskGpTJx6trEvFaVCbDvpcxwy49BKWmEPwiW8mrysNiDvIQ==}
+  /@babel/traverse/7.18.13:
+    resolution: {integrity: sha512-N6kt9X1jRMLPxxxPYWi7tgvJRH/rtoU+dbKAPDM44RFHiMH8igdsaSBgFeskhSl/kLWLDUvIh1RXCrTmg0/zvA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.18.6
@@ -336,7 +342,7 @@ packages:
       '@babel/helper-function-name': 7.18.9
       '@babel/helper-hoist-variables': 7.18.6
       '@babel/helper-split-export-declaration': 7.18.6
-      '@babel/parser': 7.18.11
+      '@babel/parser': 7.18.13
       '@babel/types': 7.18.13
       debug: 4.3.4
       globals: 11.12.0
@@ -351,6 +357,7 @@ packages:
       '@babel/helper-string-parser': 7.18.10
       '@babel/helper-validator-identifier': 7.18.6
       to-fast-properties: 2.0.0
+    dev: true
 
   /@babel/types/7.18.13:
     resolution: {integrity: sha512-ePqfTihzW0W6XAU+aMw2ykilisStJfDnsejDCXRchCcMJ4O0+8DhPXf2YUbZ6wjBlsEmZwLK/sPweWtu8hcJYQ==}
@@ -359,7 +366,6 @@ packages:
       '@babel/helper-string-parser': 7.18.10
       '@babel/helper-validator-identifier': 7.18.6
       to-fast-properties: 2.0.0
-    dev: true
 
   /@esbuild-kit/cjs-loader/2.3.0:
     resolution: {integrity: sha512-KInrVt8wlKLhWy7+y4a+E+0uBJoWgdx6Xupy+rrF4MFHA/dEt22ACvvChOZSyiqtQieYPtbPkVYSjbC7mOrFVw==}
@@ -580,6 +586,12 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /@types/babel__traverse/7.18.0:
+    resolution: {integrity: sha512-v4Vwdko+pgymgS+A2UIaJru93zQd85vIGWObM5ekZNdXCKtDYqATlEYnWgfo86Q6I1Lh0oXnksDnMU1cwmlPDw==}
+    dependencies:
+      '@babel/types': 7.18.13
+    dev: true
+
   /@types/chai-subset/1.3.3:
     resolution: {integrity: sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==}
     dependencies:
@@ -765,7 +777,7 @@ packages:
   /@vue/compiler-core/3.2.37:
     resolution: {integrity: sha512-81KhEjo7YAOh0vQJoSmAD68wLfYqJvoiD4ulyedzF+OEk/bk6/hx3fTNVfuzugIIaTrOx4PGx6pAiBRe5e9Zmg==}
     dependencies:
-      '@babel/parser': 7.18.11
+      '@babel/parser': 7.18.13
       '@vue/shared': 3.2.37
       estree-walker: 2.0.2
       source-map: 0.6.1
@@ -779,7 +791,7 @@ packages:
   /@vue/compiler-sfc/3.2.37:
     resolution: {integrity: sha512-+7i/2+9LYlpqDv+KTtWhOZH+pa8/HnX/905MdVmAcI/mPQOBwkHHIzrsEsucyOIZQYMkXUiTkmZq5am/NyXKkg==}
     dependencies:
-      '@babel/parser': 7.18.11
+      '@babel/parser': 7.18.13
       '@vue/compiler-core': 3.2.37
       '@vue/compiler-dom': 3.2.37
       '@vue/compiler-ssr': 3.2.37
@@ -799,7 +811,7 @@ packages:
   /@vue/reactivity-transform/3.2.37:
     resolution: {integrity: sha512-IWopkKEb+8qpu/1eMKVeXrK0NLw9HicGviJzhJDEyfxTR9e1WtpnnbYkJWurX6WwoFP0sz10xQg8yL8lgskAZg==}
     dependencies:
-      '@babel/parser': 7.18.11
+      '@babel/parser': 7.18.13
       '@vue/compiler-core': 3.2.37
       '@vue/shared': 3.2.37
       estree-walker: 2.0.2
@@ -3840,7 +3852,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.10
       '@babel/standalone': 7.18.12
-      '@babel/types': 7.18.10
+      '@babel/types': 7.18.13
       scule: 0.3.2
     transitivePeerDependencies:
       - supports-color
