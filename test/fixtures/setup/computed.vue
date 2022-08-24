@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 const count = ref(1)
-const dobleCount = computed(() => count.value * 2)
+const dobleCount = computed(() => count * 2)
 </script>
 
 <template>
