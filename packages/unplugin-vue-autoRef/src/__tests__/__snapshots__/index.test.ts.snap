@@ -76,3 +76,8 @@ const count3 = $ref(3)
 </template>
 "
 `;
+
+exports[`fixtures > ./fixtures/ts/basic.ts 1`] = `
+"export const bar = $ref(1)
+"
+`;
