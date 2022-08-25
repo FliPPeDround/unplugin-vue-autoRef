@@ -1,0 +1,59 @@
+{
+  "name": "unplugin-vue-autoref",
+  "version": "0.0.0",
+  "packageManager": "pnpm@7.9.0",
+  "description": "",
+  "author": "FliPPeDround<734243792@qq.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/flippedround/unplugin-vue-autoref#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flippedround/unplugin-vue-autoref.git"
+  },
+  "bugs": "https://github.com/flippedround/unplugin-vue-autoref/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./autoref-global": "./autoref-global.d.ts"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "autoref-global.d.ts"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "release": "bumpp && npm publish",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.18.13",
+    "@babel/traverse": "^7.18.13",
+    "@rollup/pluginutils": "^4.2.1",
+    "@vue/compiler-sfc": "^3.2.37",
+    "magic-string": "^0.26.2",
+    "unplugin": "^0.9.4"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.18.10",
+    "@types/babel__traverse": "^7.18.0"
+  }
+}

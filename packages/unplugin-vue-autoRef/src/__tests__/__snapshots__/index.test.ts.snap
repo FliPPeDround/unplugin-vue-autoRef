@@ -1,0 +1,78 @@
+// Vitest Snapshot v1
+
+exports[`fixtures > ./fixtures/basic/basic.vue 1`] = `
+"<script>
+export default {
+  setup() {
+    const state = $ref(0)
+    const count = $ref('1')
+    return {
+      state,
+      count,
+    }
+  },
+}
+</script>
+
+<template>
+  {{ state }}
+</template>
+"
+`;
+
+exports[`fixtures > ./fixtures/setup/computed.vue 1`] = `
+"<script setup lang=\\"ts\\">
+const count = $ref(1)
+const dobleCount = $computed(() => count * 2)
+</script>
+
+<template>
+  <h1>{{ count }}</h1>
+  <h1>{{ dobleCount }}</h1>
+</template>
+"
+`;
+
+exports[`fixtures > ./fixtures/setup/noMacros.vue 1`] = `
+"asdasd
+"
+`;
+
+exports[`fixtures > ./fixtures/setup/onMouted.vue 1`] = `
+"<script setup lang=\\"ts\\">
+import { onMounted } from 'vue'
+onMounted(() => {
+  const count = $ref(1)
+})
+</script>
+
+<template>
+  <h1>{{ count }}</h1>
+  <h1>{{ dobleCount }}</h1>
+</template>
+"
+`;
+
+exports[`fixtures > ./fixtures/setup/refAlias.vue 1`] = `
+"<script setup lang=\\"ts\\">
+const a = $ref('1')
+</script>
+
+<template>
+  <h1>{{ count }}</h1>
+</template>
+"
+`;
+
+exports[`fixtures > ./fixtures/setup/setup.vue 1`] = `
+"<script setup lang=\\"ts\\">
+const count = $ref(0)
+const count2 = $ref(1)
+const count3 = $ref(3)
+</script>
+
+<template>
+  <h1>{{ count }}</h1>
+</template>
+"
+`;
