@@ -1,18 +1,17 @@
 {
-  "name": "pkg-name",
+  "name": "vue-autoref",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@7.9.0",
   "description": "",
-  "author": "Anthony Fu <anthonyfu117@hotmail.com>",
+  "author": "FliPPeDround<734243792@qq.com>",
   "license": "MIT",
-  "funding": "https://github.com/sponsors/antfu",
-  "homepage": "https://github.com/antfu/pkg-name#readme",
+  "homepage": "https://github.com/flippedround/unplugin-vue-autoref#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/antfu/pkg-name.git"
+    "url": "git+https://github.com/flippedround/unplugin-vue-autoref.git"
   },
-  "bugs": "https://github.com/antfu/pkg-name/issues",
+  "bugs": "https://github.com/flippedround/unplugin-vue-autoref/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {
@@ -37,35 +36,21 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
+    "build": "tsup",
     "lint": "eslint .",
-    "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
-    "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "@vue/compiler-sfc": "^3.2.37"
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.1",
-    "@antfu/utils": "^0.5.2",
-    "@babel/generator": "^7.18.13",
-    "@babel/parser": "^7.18.13",
-    "@babel/traverse": "^7.18.13",
-    "@babel/types": "^7.18.10",
-    "@types/babel__traverse": "^7.18.0",
     "@types/node": "^18.7.5",
     "@vitest/ui": "^0.22.1",
     "bumpp": "^8.2.1",
     "eslint": "^8.22.0",
-    "esno": "^0.16.3",
-    "pnpm": "^7.9.0",
     "rimraf": "^3.0.2",
+    "tsup": "^6.2.2",
     "typescript": "^4.7.4",
-    "unbuild": "^0.8.8",
     "vite": "^3.0.7",
     "vitest": "^0.22.0",
     "vue": "^3.2.37"
