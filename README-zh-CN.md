@@ -1,25 +1,23 @@
 # unplugin-vue-autoRef 
 
-English | [简体中文](./README-zh-CN.md)
+更激进的vue响应式系统转换语法糖
 
-More radical reactive tansform macros in Vue.
-
-## Features
+## 特性
 
 
-- ✨ More radical reactive tansform macros in Vue.
-- 💚 Supports both Vue 2 and Vue 3 out-of-the-box.
-- 🦾 Full TypeScript support.
-- ⚡️ Supports Vite, Webpack, Vue CLI, Rollup, esbuild and more, powered by [unplugin](https://github.com/unjs/unplugin).
+- ✨ 更激进的vue响应式系统转换语法糖.
+- 💚 开箱即用支持vue2和vue3.
+- 🦾 完美支持TypeScript.
+- ⚡️ 支持 Vite、Webpack、Vue CLI、Rollup、esbuild 等, 由 [unplugin](https://github.com/unjs/unplugin) 提供支持。.
 
-## Installation
+## 安装
 
 ```bash
 npm i unplugin-vue-autoref -D
 ```
 
 <details>
-<summary>Vite (first-class support)</summary><br>
+<summary>Vite (一流支持)</summary><br>
 
 ```ts
 // vite.config.ts
@@ -34,7 +32,7 @@ export default defineConfig({
 <br></details>
 
 <details>
-<summary>Rollup (first-class support)</summary><br>
+<summary>Rollup (一流支持)</summary><br>
 
 ```ts
 // rollup.config.js
@@ -42,7 +40,7 @@ import Vue from 'unplugin-vue/rollup'
 import VueMacros from 'unplugin-vue-autoref/rollup'
 
 export default {
-  plugins: [VueMacros(), Vue()], // must be before Vue plugin!
+  plugins: [VueMacros(), Vue()], // 必须在vue插件之前!
 }
 ```
 
@@ -57,7 +55,7 @@ import { build } from 'esbuild'
 
 build({
   plugins: [
-    require('unplugin-vue-autoref/esbuild')(), // must be before Vue plugin!
+    require('unplugin-vue-autoref/esbuild')(), // 必须在vue插件之前!
     require('unplugin-vue/esbuild')(),
   ],
 })
@@ -73,7 +71,7 @@ build({
 module.exports = {
   /* ... */
   plugins: [
-    require('unplugin-vue-autoref/webpack')(), // must be before Vue plugin!
+    require('unplugin-vue-autoref/webpack')(), // 必须在vue插件之前!
     require('unplugin-vue/webpack')(),
   ],
 }
@@ -95,14 +93,14 @@ module.exports = {
 
 <br></details>
 
-### TypeScript Support
+### TypeScript 支持
 
 ```ts
 // env.d.ts
 /// <reference types="unplugin-vue-autoref/autoref-global" />
 ```
 
-## Usage
+## 使用
 
 ```html
 <script setup lang="ts">
