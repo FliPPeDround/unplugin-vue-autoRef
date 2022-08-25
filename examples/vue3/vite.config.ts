@@ -1,5 +1,5 @@
 import { URL, fileURLToPath } from 'node:url'
-import { vitePlugin as AutoRef } from 'unplugin-vue-autoref'
+import AutoRef from 'unplugin-vue-autoref/vite'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 

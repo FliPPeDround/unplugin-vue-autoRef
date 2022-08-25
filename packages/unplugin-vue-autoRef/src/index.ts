@@ -27,7 +27,7 @@ function resolveOption(options: Options): OptionsResolved {
 
 const name = 'unplugin-vue-autoRef'
 
-export const unplugin = createUnplugin((userOptions: Options = {}) => {
+export default createUnplugin((userOptions: Options = {}) => {
   const options = resolveOption(userOptions)
   const filter = createFilter(options.include, options.exclude)
 
@@ -38,18 +38,14 @@ export const unplugin = createUnplugin((userOptions: Options = {}) => {
       return filter(id)
     },
     transform(code, id) {
-      return transformMacros(code, id, options.refAlias)
-      // try {
-      //   return transformMacros(code, id, options.refAlias).code
-      // }
-      // catch (err: unknown) {
-      //   this.error(`${name} ${err}`)
-      // }
+      try {
+        // eslint-disable-next-line no-octal-escape, no-console
+        console.log('\033[33m \n ✈️  [unplugin-vue-autoRef] Reactivity transform \033[39m\n')
+        return transformMacros(code, id, options.refAlias).code
+      }
+      catch (err: unknown) {
+        this.error(`${name} ${err}`)
+      }
     },
   }
 })
-
-export const vitePlugin = unplugin.vite
-export const rollupPlugin = unplugin.rollup
-export const webpackPlugin = unplugin.webpack
-export const esbuildPlugin = unplugin.esbuild

@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { state } from './state'
 let count = ref(0)
 const updatedecrement = () => {
-  count++
+  count = count + 1
 }
 const updatedeincrement = () => {
   count--
 }
+const doubleCount = computed(() => {
+  return count * 2
+})
 </script>
 
 <template>
@@ -16,33 +20,6 @@ const updatedeincrement = () => {
   <button @click="updatedecrement()">
     +
   </button>
+  {{ doubleCount }}
+  {{ state }}
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>

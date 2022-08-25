@@ -5,10 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "types": [
-      "unplugin-vue-autoref/autoref-global"
-    ]
+    }
   },
 
   "references": [
