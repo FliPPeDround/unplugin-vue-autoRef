@@ -5,10 +5,10 @@
 ## 特性
 
 
-- ✨ 更激进的vue响应式系统转换语法糖.
-- 💚 开箱即用支持vue2和vue3.
-- 🦾 完美支持TypeScript.
-- ⚡️ 支持 Vite、Webpack、Vue CLI、Rollup、esbuild 等, 由 [unplugin](https://github.com/unjs/unplugin) 提供支持。.
+- ✨ 更激进的vue响应式系统转换语法糖。
+- 💚 开箱即用支持vue2和vue3。
+- 🦾 完美支持TypeScript。
+- ⚡️ 支持 Vite、Webpack、Vue CLI、Rollup、esbuild 等, 由 [unplugin](https://github.com/unjs/unplugin) 提供支持。
 
 ## 安装
 
@@ -21,11 +21,11 @@ npm i unplugin-vue-autoref -D
 
 ```ts
 // vite.config.ts
-import VueMacros from 'unplugin-vue-autoref/vite'
+import AutoRef from 'unplugin-vue-autoref/vite'
 import Vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  plugins: [VueMacros(), Vue()],
+  plugins: [AutoRef(), Vue({ reactivityTransform: true })],
 })
 ```
 
@@ -37,10 +37,10 @@ export default defineConfig({
 ```ts
 // rollup.config.js
 import Vue from 'unplugin-vue/rollup'
-import VueMacros from 'unplugin-vue-autoref/rollup'
+import AutoRef from 'unplugin-vue-autoref/rollup'
 
 export default {
-  plugins: [VueMacros(), Vue()], // 必须在vue插件之前!
+  plugins: [AutoRef(), Vue({ reactivityTransform: true })], // 必须在vue插件之前!
 }
 ```
 

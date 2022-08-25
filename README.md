@@ -23,11 +23,11 @@ npm i unplugin-vue-autoref -D
 
 ```ts
 // vite.config.ts
-import VueMacros from 'unplugin-vue-autoref/vite'
+import AutoRef from 'unplugin-vue-autoref/vite'
 import Vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  plugins: [VueMacros(), Vue()],
+  plugins: [AutoRef(), Vue({ reactivityTransform: true })],
 })
 ```
 
@@ -39,10 +39,10 @@ export default defineConfig({
 ```ts
 // rollup.config.js
 import Vue from 'unplugin-vue/rollup'
-import VueMacros from 'unplugin-vue-autoref/rollup'
+import AutoRef from 'unplugin-vue-autoref/rollup'
 
 export default {
-  plugins: [VueMacros(), Vue()], // must be before Vue plugin!
+  plugins: [AutoRef(), Vue({ reactivityTransform: true })], // must be before Vue plugin!
 }
 ```
 
