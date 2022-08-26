@@ -34,6 +34,7 @@ export const parseSFC = (code: string, id: string): SFCCompiled => {
 export const parseMacros = (code: string, s: MagicString, refAlias: string, offset = 0) => {
   const ast = babelParse(code, {
     sourceType: 'unambiguous',
+    plugins: ['typescript', 'jsx', 'classProperties'],
   })
   traverse(ast, {
     CallExpression(path) {

@@ -8,7 +8,7 @@ More radical reactive tansform macros in Vue.
 
 
 - ✨ More radical reactive tansform macros in Vue.
-- 💚 Supports both Vue 2 and Vue 3 out-of-the-box.
+- 💚 Supports both SFC and JSX out-of-the-box.
 - 🦾 Full TypeScript support.
 - ⚡️ Supports Vite, Webpack, Vue CLI, Rollup, esbuild and more, powered by [unplugin](https://github.com/unjs/unplugin).
 

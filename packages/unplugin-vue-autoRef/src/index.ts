@@ -1,6 +1,7 @@
 import { createUnplugin } from 'unplugin'
 import { createFilter } from '@rollup/pluginutils'
 import type { FilterPattern } from '@rollup/pluginutils'
+import type { UserConfig } from 'vite'
 import { transformMacros } from './core'
 
 export interface Options {
@@ -39,8 +40,8 @@ export default createUnplugin((userOptions: Options = {}) => {
     },
     transform(code, id) {
       try {
-        // eslint-disable-next-line no-octal-escape, no-console
-        console.log('\033[33m \n ✈️  [unplugin-vue-autoRef] Reactivity transform \033[39m\n')
+        // eslint-disable-next-line no-console, no-octal-escape
+        console.log(`${'\033'}[33m \n ✈️ [${name}] Reactivity transform`)
         return transformMacros(code, id, options.refAlias).code
       }
       catch (err: unknown) {

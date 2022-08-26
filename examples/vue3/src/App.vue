@@ -2,11 +2,8 @@
 import { state } from './state'
 
 let count = ref(0)
-const updatedecrement = () => {
-  count = count + 1
-}
-const updatedeincrement = () => {
-  count--
+const updateCount = (num: number) => {
+  count += num
 }
 const doubleCount = computed(() => {
   return count * 2
@@ -14,11 +11,11 @@ const doubleCount = computed(() => {
 </script>
 
 <template>
-  <button @click="updatedeincrement()">
+  <button @click="updateCount(-1)">
     -
   </button>
   {{ count }}
-  <button @click="updatedecrement()">
+  <button @click="updateCount(1)">
     +
   </button>
   {{ doubleCount }}

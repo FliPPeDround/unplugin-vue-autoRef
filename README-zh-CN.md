@@ -6,7 +6,7 @@
 
 
 - ✨ 更激进的vue响应式系统转换语法糖。
-- 💚 开箱即用支持vue2和vue3。
+- 💚 开箱即用支持SFC和JSX。
 - 🦾 完美支持TypeScript。
 - ⚡️ 支持 Vite、Webpack、Vue CLI、Rollup、esbuild 等, 由 [unplugin](https://github.com/unjs/unplugin) 提供支持。
 
