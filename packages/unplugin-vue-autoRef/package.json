@@ -1,6 +1,6 @@
 {
   "name": "unplugin-vue-autoref",
-  "version": "0.0.3-beta.0",
+  "version": "0.0.3-beta.1",
   "packageManager": "pnpm@7.9.0",
   "description": "",
   "author": "FliPPeDround<734243792@qq.com>",
@@ -55,7 +55,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint .",
-    "release": "bumpp && npm publish",
+    "release": "bumpp && nrm use npm && npm publish && nrm use taobao",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
