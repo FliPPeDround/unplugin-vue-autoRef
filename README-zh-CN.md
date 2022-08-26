@@ -2,6 +2,13 @@
 
 更激进的vue响应式系统转换语法糖底层来自vue的响应式转换！
 
+<br/>
+
+### 以下示例与响应式转换说明均来自[Vue Reactive Transform]('https://cn.vuejs.org/guide/extras/reactivity-transform.html')
+
+<br/>
+<br/>
+
 自从引入组合式 API 的概念以来，一个主要的未解决的问题就是 ref 和响应式对象到底用哪个。响应式对象存在解构丢失响应性的问题，而 ref 需要到处使用 .value 则感觉很繁琐，并且在没有类型系统的帮助时很容易漏掉 .value。
 
 **unplugin-vue-autoref**是一个编译时的转换步骤，让我们可以像这样书写代码：
@@ -21,7 +28,43 @@ function increment() {
 </template>
 ```
 
-这样的代码，我们可以很容易的更新到 count 变量的值，并且不需要使用 .value 来获取。
+虽然响应式变量使我们可以不再受 .value 的困扰，但它也使得我们在函数间传递响应式变量时可能造成“响应性丢失”的问题。
+
+假设有一个期望接收一个 ref 对象为参数的函数：
+```ts
+function trackChange(x: Ref<number>) {
+  watch(x, (x) => {
+    console.log('x 改变了！')
+  })
+}
+
+let count = ref(0)
+trackChange(count) // 无效！
+```
+上面的例子不会正常工作，因为代码被编译成了这样：
+```ts
+let count = ref(0)
+trackChange(count.value)
+```
+这里的 count.value 是以一个 number 类型值的形式传入，然而 trackChange 期望接收的是一个真正的 ref。要解决这个问题，可以在将 count 作为参数传入之前，用 $$() 包装或使用一个[value, ref]来接受ref返回值：
+
+```ts
+let count = ref(0)
+- trackChange(count)
++ trackChange($$(count))
+```
+```ts
+let [count, countRef] = ref(0)
+- trackChange(count)
++ trackChange(countRef)
+```
+上面的代码都将被编译成：
+```ts
+import { ref } from 'vue'
+
+let count = ref(0)
+trackChange(count)
+```
 
 ## 包括
 

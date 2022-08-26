@@ -20,6 +20,18 @@ export default {
 "
 `;
 
+exports[`fixtures > ./fixtures/exportRef/index.vue 1`] = `
+"<script setup lang=\\"ts\\">
+let count = $ref(0)
+let countRef = $$(count)
+</script>
+
+<template>
+  <h1>{{ count }}</h1>
+</template>
+"
+`;
+
 exports[`fixtures > ./fixtures/setup/computed.vue 1`] = `
 "<script setup lang=\\"ts\\">
 const count = $ref(1)

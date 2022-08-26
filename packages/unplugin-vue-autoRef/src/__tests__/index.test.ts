@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 import { transformMacros } from '../core'
 
 describe('fixtures', async () => {
-  const files = import.meta.glob('./fixtures/*/*.{vue,js,ts}', {
+  const files = import.meta.glob('./fixtures/**/*.{vue,js,ts}', {
     eager: true,
     as: 'raw',
   })
