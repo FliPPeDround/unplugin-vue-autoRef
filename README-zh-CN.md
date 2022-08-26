@@ -1,4 +1,4 @@
-# unplugin-vue-autoRef 
+# unplugin-vue-autoRef [![npm](https://img.shields.io/npm/v/unplugin-vue-autoref.svg)](https://npmjs.com/package/unplugin-vue-autoref)
 
 更激进的vue响应式系统转换语法糖
 

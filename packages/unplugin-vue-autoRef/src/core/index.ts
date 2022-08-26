@@ -18,7 +18,7 @@ function transformMacros(code: string, id: string, refAlias?: string) {
     const loc = sfc.scriptSetup?.loc || sfc.script?.loc
     parseMacros(loc!.source, s, refAlias!, loc!.start.offset)
   }
-  else if (id.endsWith('.ts') || id.endsWith('.js')) {
+  else if (id.endsWith('.ts') || id.endsWith('.js') || id.endsWith('.tsx') || id.endsWith('.jsx')) {
     parseMacros(code, s, refAlias!)
   }
 

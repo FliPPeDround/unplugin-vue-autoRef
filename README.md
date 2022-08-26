@@ -1,4 +1,4 @@
-# unplugin-vue-autoRef 
+# unplugin-vue-autoRef [![npm](https://img.shields.io/npm/v/unplugin-vue-autoref.svg)](https://npmjs.com/package/unplugin-vue-autoref)
 
 English | [简体中文](./README-zh-CN.md)
 

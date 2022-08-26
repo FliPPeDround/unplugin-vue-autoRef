@@ -1,7 +1,6 @@
 import { createUnplugin } from 'unplugin'
 import { createFilter } from '@rollup/pluginutils'
 import type { FilterPattern } from '@rollup/pluginutils'
-import type { UserConfig } from 'vite'
 import { transformMacros } from './core'
 
 export interface Options {
@@ -20,7 +19,7 @@ export type OptionsResolved = Omit<Required<Options>, 'exclude'> & {
 
 function resolveOption(options: Options): OptionsResolved {
   return {
-    include: [/\.vue$/, /\.ts$/, /\.setup\.[cm]?[jt]sx?/],
+    include: [/\.vue$/, /\.[jt]s[x]$/, /\.setup\.[cm]?[jt]sx?/],
     refAlias: '',
     ...options,
   }
@@ -32,6 +31,8 @@ export default createUnplugin((userOptions: Options = {}) => {
   const options = resolveOption(userOptions)
   const filter = createFilter(options.include, options.exclude)
 
+  // eslint-disable-next-line no-console, no-octal-escape
+  console.log(`${'\033'}[33m \n ✈️ [${name}] Reactivity transform`)
   return {
     name,
     enforce: 'pre',
@@ -40,8 +41,6 @@ export default createUnplugin((userOptions: Options = {}) => {
     },
     transform(code, id) {
       try {
-        // eslint-disable-next-line no-console, no-octal-escape
-        console.log(`${'\033'}[33m \n ✈️ [${name}] Reactivity transform`)
         return transformMacros(code, id, options.refAlias).code
       }
       catch (err: unknown) {

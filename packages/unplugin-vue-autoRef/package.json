@@ -55,7 +55,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint .",
-    "release": "bumpp && nrm use npm && npm publish && nrm use taobao",
+    "release": "bumpp && npm publish",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
