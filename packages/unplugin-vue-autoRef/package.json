@@ -1,6 +1,6 @@
 {
   "name": "unplugin-vue-autoref",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "packageManager": "pnpm@7.9.0",
   "description": "",
   "author": "FliPPeDround<734243792@qq.com>",
@@ -49,6 +49,7 @@
   },
   "files": [
     "dist",
+    "autoref.d.ts",
     "autoref-global.d.ts"
   ],
   "scripts": {
