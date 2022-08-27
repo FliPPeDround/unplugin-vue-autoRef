@@ -15,7 +15,6 @@ function trackChange(x: Ref<number>) {
     console.log('x 改变了！', x)
   })
 }
-
 trackChange(countRef)
 </script>
 

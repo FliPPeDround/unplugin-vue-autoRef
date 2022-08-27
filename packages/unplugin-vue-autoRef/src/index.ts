@@ -41,7 +41,7 @@ export default createUnplugin((userOptions: Options = {}) => {
     },
     transform(code, id) {
       try {
-        return transformMacros(code, id, options.refAlias).code
+        return transformMacros(code, id).code
       }
       catch (err: unknown) {
         this.error(`${name} ${err}`)

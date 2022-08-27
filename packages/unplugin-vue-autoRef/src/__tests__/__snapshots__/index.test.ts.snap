@@ -65,17 +65,6 @@ onMounted(() => {
 "
 `;
 
-exports[`fixtures > ./fixtures/setup/refAlias.vue 1`] = `
-"<script setup lang=\\"ts\\">
-const a = $ref('1')
-</script>
-
-<template>
-  <h1>{{ count }}</h1>
-</template>
-"
-`;
-
 exports[`fixtures > ./fixtures/setup/setup.vue 1`] = `
 "<script setup lang=\\"ts\\">
 const count = $ref(0)

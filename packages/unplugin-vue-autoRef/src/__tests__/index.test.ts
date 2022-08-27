@@ -9,7 +9,7 @@ describe('fixtures', async () => {
 
   for (const [id, code] of Object.entries(files)) {
     test(id.replace(/\\/g, '/'), async () => {
-      const exec = () => transformMacros(code, id, '$').code
+      const exec = () => transformMacros(code, id).code
       if (id.includes('error'))
         expect(exec).toThrowErrorMatchingSnapshot()
 

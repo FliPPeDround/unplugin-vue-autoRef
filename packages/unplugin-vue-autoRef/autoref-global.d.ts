@@ -1,15 +1,15 @@
 import type {
-  $ref as _$ref,
-  $shallowRef as _$shallowRef,
-  $computed as _$computed,
-  $customRef as _$customRef,
-  $toRef as _$toRef
-} from 'vue/macros'
+  ref as _ref,
+  shallowRef as _shallowRef,
+  computed as _computed,
+  customRef as _customRef,
+  toRef as _toRef
+} from './autoref'
 
 declare global {
-  const ref: typeof _$ref
-  const shallowRef: typeof _$shallowRef
-  const computed: typeof _$computed
-  const customRef: typeof _$customRef
-  const toRef: typeof _$toRef
+  const ref: typeof _ref
+  const shallowRef: typeof _shallowRef
+  const computed: typeof _computed
+  const customRef: typeof _customRef
+  const toRef: typeof _toRef
 }

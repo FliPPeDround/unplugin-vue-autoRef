@@ -2,7 +2,7 @@ import { parse } from '@vue/compiler-sfc'
 import { parse as babelParse } from '@babel/parser'
 import type { SFCDescriptor, SFCScriptBlock } from '@vue/compiler-sfc'
 import type MagicString from 'magic-string'
-import type { Node, VariableDeclaration, VariableDeclarator } from '@babel/types'
+import type { VariableDeclaration, VariableDeclarator } from '@babel/types'
 import traverse from '@babel/traverse'
 import { DEFINE_REF_MACROS } from '../core/constants'
 
@@ -32,7 +32,7 @@ export const parseSFC = (code: string, id: string): SFCCompiled => {
   }
 }
 
-export const parseMacros = (code: string, s: MagicString, refAlias: string, offset = 0) => {
+export const parseMacros = (code: string, s: MagicString, offset = 0) => {
   const ast = babelParse(code, {
     sourceType: 'unambiguous',
     plugins: ['typescript', 'jsx', 'classProperties'],
@@ -43,19 +43,20 @@ export const parseMacros = (code: string, s: MagicString, refAlias: string, offs
       if (DEFINE_REF_MACROS.includes(calleeName)) {
         const names = getArrayPatternName(path.parentPath.node as VariableDeclarator)
         const { kind, start, end } = (path.parentPath.parentPath!.node as VariableDeclaration)
-        const { callee, arguments: refArguments } = path.node
+        const argument = path.get('arguments').toString()
+        const { callee } = path.node
         if (names?.length === 0) {
           s.overwrite(
             callee.start! + offset,
             callee.end! + offset,
-            calleeName === refAlias ? '$ref' : `\$${calleeName}`,
+            `\$${calleeName}`,
           )
         }
         else if (names?.length === 2) {
           s.overwrite(
             start! + offset,
             end! + offset,
-            `${kind} ${names[0]} = \$${calleeName}(${refArguments[0].value})
+            `${kind} ${names[0]} = \$${calleeName}(${argument})
 ${kind} ${names[1]} = \$\$(${names[0]})`,
           )
         }
@@ -70,12 +71,12 @@ ${kind} ${names[1]} = \$\$(${names[0]})`,
 function getArrayPatternName(node: VariableDeclarator) {
   const refIdentifier = node.id
   if (refIdentifier.type === 'ArrayPattern') {
-    const refIndetifierNames: string[] = []
+    const refIdentifierNames: string[] = []
     refIdentifier.elements.forEach((element) => {
       if (element!.type === 'Identifier')
-        refIndetifierNames.push(element.name)
+        refIdentifierNames.push(element.name)
     })
-    return refIndetifierNames
+    return refIdentifierNames
   }
   else if (refIdentifier.type === 'Identifier') {
     return []
