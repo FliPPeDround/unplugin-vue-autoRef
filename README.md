@@ -5,7 +5,7 @@ English | [简体中文](./README-zh-CN.md)
 ## More radical reactive tansform macros in Vue powered by Vue Reactivity Transform！
 <br/>
 
-### The following examples are from [Vue Reactive Transform](https://cn.vuejs.org/guide/extras/reactivity-transform.html)
+### The following examples are from [Vue Reactive Transform](https://vuejs.org/guide/extras/reactivity-transform.html)
 
 <br/>
 
@@ -23,7 +23,7 @@ function increment() {
 }
 function trackChange(x: Ref<number>) {
   watch(x, (x) => {
-    console.log('x 改变了！')
+    console.log('x changed!')
   })
 }
 
@@ -160,7 +160,7 @@ module.exports = {
 
 <br></details>
 
-### TypeScript Support
+## TypeScript Support
 
 ```ts
 // env.d.ts

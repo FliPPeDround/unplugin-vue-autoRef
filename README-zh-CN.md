@@ -158,7 +158,7 @@ module.exports = {
 
 <br></details>
 
-### TypeScript 支持
+## TypeScript 支持
 
 ```ts
 // env.d.ts
