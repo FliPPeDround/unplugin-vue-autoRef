@@ -18,6 +18,10 @@ let count = ref(0)
 
 console.log(count)
 
+const doubleCount = computed(() => {
+  count * 2
+})
+
 function increment() {
   count++
 }
@@ -32,6 +36,38 @@ trackChange(count) // doesn't work!
 
 <template>
   <button @click="increment">{{ count }}</button>
+  {{doubleCount}}
+</template>
+```
+## Use Comment 
+```html
+<script setup>
+
+// @ref
+let count = 0
+
+// @computed
+const doubleCount = () => {
+  count * 2
+}
+
+console.log(count)
+
+function increment() {
+  count++
+}
+function trackChange(x: Ref<number>) {
+  watch(x, (x) => {
+    console.log('x changed!')
+  })
+}
+
+trackChange(count) // doesn't work!
+</script>
+
+<template>
+  <button @click="increment">{{ count }}</button>
+  {{doubleCount}}
 </template>
 ```
 
@@ -164,7 +200,7 @@ module.exports = {
 
 ```ts
 // env.d.ts
-/// <reference types="unplugin-vue-autoref/autoref-global" />
+/// <reference types="unplugin-vue-autoref/client" />
 ```
 
 ## Usage
