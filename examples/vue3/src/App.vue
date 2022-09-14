@@ -2,20 +2,25 @@
 import { watch } from 'vue'
 import type { Ref } from 'vue'
 import { state } from './state'
-let [count, countRef] = ref(0)
+
+// @ref
+let count = 0
+
+// @computed
+const doubleCount = () => {
+  return count * 2
+}
+
 const updateCount = (num: number) => {
   count += num
 }
-const doubleCount = computed(() => {
-  return count * 2
-})
 
 function trackChange(x: Ref<number>) {
   watch(x, (x) => {
     console.log('x 改变了！', x)
   })
 }
-trackChange(countRef)
+trackChange($$(count))
 </script>
 
 <template>
@@ -29,3 +34,4 @@ trackChange(countRef)
   {{ doubleCount }}
   {{ state }}
 </template>
+

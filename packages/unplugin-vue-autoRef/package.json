@@ -34,7 +34,7 @@
       "require": "./dist/esbuild.js",
       "import": "./dist/esbuild.mjs"
     },
-    "./autoref-global": "./autoref-global.d.ts"
+    "./client": "./autoref-global.d.ts"
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",

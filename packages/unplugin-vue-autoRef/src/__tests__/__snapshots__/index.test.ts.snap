@@ -22,7 +22,22 @@ export default {
 
 exports[`fixtures > ./fixtures/comment/index.ts 1`] = `
 "// @ref
+const foo = $ref(1)
+
+// @computed
+const bar = $computed(() => {
+  return foo + 1;
+})
+"
+`;
+
+exports[`fixtures > ./fixtures/comment/sfc.vue 1`] = `
+"<script setup lang=\\"ts\\">
+// @ref
+const count = $ref(0)
+
 const foo = 1
+</script>
 "
 `;
 

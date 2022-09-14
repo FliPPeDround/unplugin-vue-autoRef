@@ -1,1 +1,1 @@
-export const state = ref('state')
+export const state = 'state'

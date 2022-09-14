@@ -16,9 +16,7 @@ export declare const enum RefTypes {
   WritableComputedRef = 3
 }
 
-type _RefValue<T> = T extends null | undefined ? T : ReactiveVariable<T>
-
-type RefValue<T> = _RefValue<T> & [_RefValue<T>, Ref<T>]
+type RefValue<T> = T extends null | undefined ? T : ReactiveVariable<T>
 
 type ReactiveVariable<T> = T & { [RefType]?: RefTypes.Ref }
 
@@ -86,6 +84,7 @@ type ToRawRefs<T extends object> = {
 }
 
 export declare function ref<T>(arg?: T | Ref<T>): RefValue<UnwrapRef<T>>
+export type Refs<T> = [RefValue<T>, Ref<T>]
 
 export declare function shallowRef<T>(arg?: T): RefValue<T>
 

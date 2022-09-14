@@ -91,45 +91,21 @@ export const parseCommentMacros = (code: string, s: MagicString, offset = 0) => 
   if (!ast?.comments)
     return s
   traverse(ast, {
-    CallExpression(path) {
-      // const calleeName = path.get('callee').toString()
-      const comments = path.node.leadingComments
-      if (comments) {
-        comments.forEach((comment) => {
-          const { value } = comment
-          if (value) {
-            const macros = value.match(/@ref/g)
-            console.log(value)
-            console.log(macros)
-            if (macros) {
-              const names = getArrayPatternName(path.parentPath.node as VariableDeclarator)
-              console.log(names)
-              const { kind, start, end } = (path.parentPath.parentPath!.node as VariableDeclaration)
-              const argument = path.get('arguments').toString()
-              const { callee } = path.node
-              if (names?.length === 0) {
-                s.overwrite(
-                  callee.start! + offset,
-                  callee.end! + offset,
-                  '\$ref',
-                )
-              }
-              else if (names?.length === 2) {
-                s.overwrite(
-                  start! + offset,
-                  end! + offset,
-                  `${kind} ${names[0]} = \$ref(${argument})
-${kind} ${names[1]} = \$\$(${names[0]})`,
-
-                )
-              }
-              else {
-                throw new Error('@ref macro can only be used with one or two arguments')
-              }
-            }
-          }
-        })
-      }
+    VariableDeclarator(path) {
+      // 找到同级的注释
+      const comments = path.parentPath?.node.leadingComments
+      if (!comments)
+        return
+      // 过滤值为@DEFINE_REF_MACROS的注释
+      const comment = comments.find(comment => DEFINE_REF_MACROS.map(macros => `@${macros}`).includes(comment.value.trim()))
+      const refComment = comment?.value.trim().replace('@', '')
+      const refLiteral = path.get('init').toString()
+      const { init } = path.node
+      s.overwrite(
+        init!.start! + offset,
+        init!.end! + offset,
+        `\$${refComment}(${refLiteral})`,
+      )
     },
   })
 }

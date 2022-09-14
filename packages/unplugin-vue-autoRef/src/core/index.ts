@@ -5,7 +5,16 @@ import { DEFINE_REF_MACROS } from './constants'
 function transformMacros(code: string, id: string) {
   const s = new MagicString(code)
   if (DEFINE_REF_MACROS.map(macros => code.includes(`@${macros}`)).some(Boolean)) {
-    parseCommentMacros(code, s)
+    if (id.endsWith('.vue')) {
+      const sfc = parseSFC(code, id)
+      if (!sfc.script && !sfc.scriptSetup)
+        return { code }
+      const loc = sfc.scriptSetup?.loc || sfc.script?.loc
+      parseCommentMacros(loc!.source, s, loc!.start.offset)
+    }
+    else {
+      parseCommentMacros(code, s)
+    }
   }
   else if (DEFINE_REF_MACROS.map(macros => code.includes(macros)).some(Boolean)) {
     if (id.endsWith('.vue')) {
