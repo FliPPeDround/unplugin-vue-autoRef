@@ -2,7 +2,7 @@ import { parse } from '@vue/compiler-sfc'
 import { parse as babelParse } from '@babel/parser'
 import type { SFCDescriptor, SFCScriptBlock } from '@vue/compiler-sfc'
 import type MagicString from 'magic-string'
-import type { VariableDeclaration, VariableDeclarator } from '@babel/types'
+import type { Comment, VariableDeclaration, VariableDeclarator } from '@babel/types'
 import traverse from '@babel/traverse'
 import { DEFINE_REF_MACROS } from '../core/constants'
 
@@ -92,19 +92,25 @@ export const parseCommentMacros = (code: string, s: MagicString, offset = 0) => 
     return s
   traverse(ast, {
     VariableDeclarator(path) {
+      // 判断是否为导出模块
+      let comments: Comment[] = []
+      const parent = path.parentPath.parentPath?.node
+      if (parent?.type === 'ExportNamedDeclaration')
+        comments = parent?.leadingComments as Comment[]
       // 找到同级的注释
-      const comments = path.parentPath?.node.leadingComments
+      else
+        comments = path.parentPath?.node.leadingComments as Comment[]
       if (!comments)
         return
       // 过滤值为@DEFINE_REF_MACROS的注释
       const comment = comments.find(comment => DEFINE_REF_MACROS.map(macros => `@${macros}`).includes(comment.value.trim()))
-      const refComment = comment?.value.trim().replace('@', '')
+      const refComment = comment?.value.trim().replace('@', '$')
       const refLiteral = path.get('init').toString()
       const { init } = path.node
       s.overwrite(
         init!.start! + offset,
         init!.end! + offset,
-        `\$${refComment}(${refLiteral})`,
+        `${refComment}(${refLiteral})`,
       )
     },
   })

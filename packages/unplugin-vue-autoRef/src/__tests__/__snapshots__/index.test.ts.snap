@@ -20,6 +20,12 @@ export default {
 "
 `;
 
+exports[`fixtures > ./fixtures/comment/export.ts 1`] = `
+"// @ref
+export const a = $ref(1)
+"
+`;
+
 exports[`fixtures > ./fixtures/comment/index.ts 1`] = `
 "// @ref
 const foo = $ref(1)
